@@ -62,11 +62,12 @@ public class CustomItemsMod {
 	@EventHandler()
 	public void init(FMLInitializationEvent e) {
 		Side side = e.getSide();
-		dir = FilenameUtils.normalizeNoEndSeparator(side.isClient() ? Minecraft.getMinecraft().mcDataDir.getAbsolutePath() + File.separator : "");
-		dir += "custom-items" + File.separator;
+		dir = FilenameUtils.normalize((side.isClient() ? (Minecraft.getMinecraft().mcDataDir + File.separator) : "") + "custom-items" + File.separator);
 		File cdir = new File(dir);
 		if (cdir.exists() && cdir.isDirectory()) {
 			loadPacks(cdir);
+		} else {
+			FMLLog.log(Level.WARN, "Can not find directory '%s', skipping custom items search", cdir.toString());
 		}
 		registerItems(side);
 		if (side.isClient()) {
@@ -77,6 +78,7 @@ public class CustomItemsMod {
 	}
 	
 	private void loadPacks(File dir) {
+		FMLLog.log(Level.TRACE, "Searching directory '%s' for custom item packs", dir.getAbsolutePath().toString());
 		File[] packFiles = dir.listFiles(new FilenameFilter(){
 			@Override
 			public boolean accept(File file, String name) {
@@ -89,13 +91,14 @@ public class CustomItemsMod {
 			creator.name = packFile.getName();
 			creator.name = creator.name.substring(0, creator.name.length() - 5);
 			try {
+				FMLLog.log(Level.TRACE, "Reading %s", packFile.getName());
 				CustomItemsPack pack = gson.fromJson(FileUtils.readFileToString(packFile), CustomItemsPack.class);
 				if (pack.items.isEmpty()) {
 					FMLLog.info("Custom items pack '%s' contains no items", creator.name);
 				}
 				packs.add(pack);
 			} catch (Exception ex) {
-				FMLLog.log(Level.ERROR, "Failed to load custom items pack '%s'", creator.name);
+				FMLLog.log(Level.ERROR, "Failed to load custom items pack '%s' with %s: %s", creator.name, ex.getClass().getSimpleName(), ex.getMessage());
 			}
 		}
 	}
