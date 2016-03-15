@@ -26,6 +26,7 @@ your config. It is creates automatically every time if there is
 YOURMODPACK directory.
 6. Only YOURMODPACK.json and YOURMODPACK.zip must be included into
 your modpack. You MUST NOT include YOURMODPACK directory into modpack.
+Same goes to server custom-items directory.
 You can include several of such item packs. They will work together.
 
 Useful info

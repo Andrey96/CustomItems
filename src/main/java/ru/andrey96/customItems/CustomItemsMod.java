@@ -36,7 +36,6 @@ import ru.andrey96.customItems.json.CustomItemsPack;
 @Mod(modid=CustomItemsMod.MODID)
 public class CustomItemsMod {
 	
-	@SideOnly(Side.CLIENT)
 	public static class CreativeTab extends CreativeTabs {
 		
 		public Item tabIconItem;
@@ -58,14 +57,13 @@ public class CustomItemsMod {
 	
 	public String dir;
 	public final List<CustomItemsPack> packs = new ArrayList<CustomItemsPack>();
-	@SideOnly(Side.CLIENT)
 	private CreativeTab currentCreativeTab = null;
 	
 	@EventHandler()
 	public void init(FMLInitializationEvent e) {
 		Side side = e.getSide();
-		dir = FilenameUtils.normalizeNoEndSeparator(side.isClient() ? Minecraft.getMinecraft().mcDataDir.getAbsolutePath() : ".");
-		dir += File.separator + "custom-items" + File.separator;
+		dir = FilenameUtils.normalizeNoEndSeparator(side.isClient() ? Minecraft.getMinecraft().mcDataDir.getAbsolutePath() + File.separator : "");
+		dir += "custom-items" + File.separator;
 		File cdir = new File(dir);
 		if (cdir.exists() && cdir.isDirectory()) {
 			loadPacks(cdir);
