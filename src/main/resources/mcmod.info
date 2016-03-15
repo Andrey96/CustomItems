@@ -1,0 +1,16 @@
+[
+{
+  "modid": "CustomItems",
+  "name": "Custom Items",
+  "description": "Adds custom items based on config",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Andrey96"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

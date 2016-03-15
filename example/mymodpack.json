@@ -1,0 +1,18 @@
+{
+    "creativeTabIcon": "CustomItems:mymodpack_red_circle",
+    "items": [
+        {
+            "name": "rnt",
+            "texture": "minecraft:nether_star"
+        },
+        {
+            "name": "super_stick",
+            "texture": "minecraft:stick",
+            "hasEnchantEffect": true,
+            "maxStackSize": 4
+        },
+        {
+            "name": "red_circle"
+        }
+    ]
+}

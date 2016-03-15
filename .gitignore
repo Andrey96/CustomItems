@@ -1,0 +1,12 @@
+/.gradle
+/.settings
+/.classpath
+/.project
+/bin
+/build
+#Need some help with this, doesn't really works
+/eclipse
+!/eclipse/.metadata/.plugins/org.eclipse.core.resources
+!/eclipse/.metadata/.plugins/org.eclipse.core.runtime
+!/eclipse/.metadata/.plugins/org.eclipse.debug.core
+!/eclipse/.metadata/.plugins/org.eclipse.debug.ui
